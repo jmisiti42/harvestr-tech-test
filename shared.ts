@@ -14,6 +14,9 @@ async function startup () {
 
   // define models in `req` so they can be used inside controllers
   app.use(async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    /* We load Models inside request to be able to get the model inside controllers like :
+        await req.models.Blocks.findOne().exec()
+    */
     req.models = {
       Blocks: Block
     }
