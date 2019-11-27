@@ -1,0 +1,10 @@
+On message receive, get mentionned users
+
+For each mentionned users :
+    add the message to the list of messages to send
+    If they already are in a queue to receive a mail
+        If the time they waited is over 30min
+            send mail
+    replace the mail in queue
+    
+    

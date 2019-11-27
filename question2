@@ -1,0 +1,36 @@
+Describe a possible software architecture (schemas+text) (data models, classes, interactions) for a project with the following specifications:
+
+- Website fetches user's localization
+- Website displays the list of restaurants around the user
+- For each restaurant, display its distance from user, address, average price, cooking type, and note
+- User can create an account (Username, email, password)
+- Once connected, user can note each nearby restaurant one time (0-5 notation)
+
+- Restaurant list is accessible through an external Google API
+
+"restaurants": [GeoIndex, *]
+    - Restaurant name
+    - GeoPoint (Long + Lat)
+    - address
+    - Avg price
+    - Cooking type
+"users":
+    - username
+    - email
+    - pwd
+"notes": [*]
+    - restaurant_id
+    - user_id
+    - note
+
+When we receive user location, we get every restaurant close enough to be displayed (using geoIndex)
+Fetch restaurant note using restaurant_id to get every notes and then get the total note
+Get the distance between restaurant and the user location
+send restaurant list to the user
+
+User should be able to click on nearby restaurant to see their infos and can note the restaurant
+
+When user note a restaurant we check if restaurant_id + user_id doesn't already exist and we push the note (If exist, replace)
+
+
+Or we could use google map API and updated restaurant when a user edit a note
